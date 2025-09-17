@@ -1,10 +1,21 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Heart, Twitter, Linkedin, Github, Mail, ArrowUp } from "lucide-react";
+import {
+  Heart,
+  Twitter,
+  Linkedin,
+  Github,
+  Mail,
+  ArrowUp,
+  BookOpen,
+  Phone,
+  MapPin,
+  Send,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
-// GSAP প্লাগিন রেজিস্টার করুন
+// GSAP plugin registration
 if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -14,7 +25,7 @@ const DesktopFooter = () => {
   const backToTopRef = useRef(null);
 
   useEffect(() => {
-    // ফুটার অ্যানিমেশন
+    // Footer animation
     gsap.fromTo(
       footerRef.current,
       { y: 50, opacity: 0 },
@@ -30,7 +41,7 @@ const DesktopFooter = () => {
       }
     );
 
-    // Back to top বাটন অ্যানিমেশন
+    // Back to top button animation
     gsap.fromTo(
       backToTopRef.current,
       { scale: 0, opacity: 0 },
@@ -46,7 +57,7 @@ const DesktopFooter = () => {
       }
     );
 
-    // স্ক্রোল ইভেন্ট লিসেনার
+    // Scroll event listener
     const handleScroll = () => {
       if (window.scrollY > 500) {
         gsap.to(backToTopRef.current, { opacity: 1, scale: 1, duration: 0.3 });
@@ -65,82 +76,96 @@ const DesktopFooter = () => {
 
   const companyLinks = {
     About: "/about",
-    Careers: "/#",
+    Careers: "/careers",
     Contact: "/contact",
-    Partners: "/#",
+    Partners: "/partners",
   };
 
   return (
     <footer
       ref={footerRef}
-      className=" text-black border-1 border-gray-800 rounded-4xl  pt-16 pb-8 px-4 md:px-8 relative"
+      className="bg-white text-gray-800 border-t border-gray-200 pt-16 pb-8 px-4 md:mx-8 rounded-t-4xl rounded-b-1xl relative"
     >
-      {/* Back to top বাটন */}
+      {/* Back to top button */}
       <button
         ref={backToTopRef}
         onClick={scrollToTop}
-        className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-full shadow-lg z-50 opacity-0 scale-0 transition-colors"
+        className="fixed bottom-6 right-6 bg-gradient-to-r from-pink-400 to-pink-600 hover:from-pink-500 hover:to-pink-700 text-white p-3 rounded-full shadow-lg z-50 opacity-0 scale-0 transition-all duration-300 hover:shadow-xl"
         aria-label="Back to top"
       >
         <ArrowUp size={20} />
       </button>
 
-      <div className="max-w-6xl mx-auto">
-        {/* মূল কন্টেন্ট */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* ব্র্যান্ড বিভাগ */}
-          <div className="lg:col-span-1">
-            <Link to="/" className="flex items-center">
-              <div className="h-10 w-10 mr-1 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full flex items-center justify-center text-white font-bold">
-                BN
+      <div className="max-w-7xl mx-auto">
+        {/* Main content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-12">
+          {/* Brand section */}
+          <div className="lg:col-span-2">
+            <Link to="/" className="flex items-center mb-6">
+              <div className="h-12 w-12 mr-3 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full flex items-center justify-center text-white font-bold shadow-md">
+                <BookOpen size={20} />
               </div>
-              <span className="font-bold text-2xl tracking-tight">
+              <span className="font-bold text-2xl tracking-tight text-gray-900">
                 BookNest
               </span>
             </Link>
-            <p className="text-gray-400 mb-6 max-w-xs">
-              BookNest - Your gateway to a world of knowledge and imagination.
-              We bring books, authors, and readers together with passion and
-              excellence. Discover, explore, and grow with us every day!
+            <p className="text-gray-600 mb-6 max-w-md leading-relaxed">
+              BookNest is your premier destination for discovering, purchasing,
+              and discussing books. We connect readers with their next favorite
+              story and authors with their audience. Explore our vast collection
+              today!
             </p>
             <div className="flex space-x-4">
               <a
                 href="https://x.com/amarpatra89?t=QQAgWJ04jucV95_oK4iG4Q&s=03"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-pink-100 hover:text-pink-600 transition-all duration-300 shadow-sm"
+                aria-label="Twitter"
               >
-                <Twitter size={20} />
+                <Twitter size={18} />
               </a>
               <a
                 href="https://www.linkedin.com/in/amarpatra/"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-pink-100 hover:text-pink-600 transition-all duration-300 shadow-sm"
+                aria-label="LinkedIn"
               >
-                <Linkedin size={20} />
+                <Linkedin size={18} />
               </a>
               <a
                 href="https://github.com/Amar-H-G"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-pink-100 hover:text-pink-600 transition-all duration-300 shadow-sm"
+                aria-label="GitHub"
               >
-                <Github size={20} />
+                <Github size={18} />
               </a>
               <a
                 href="mailto:amarpatra932@gmail.com"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="h-10 w-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-pink-100 hover:text-pink-600 transition-all duration-300 shadow-sm"
+                aria-label="Email"
               >
-                <Mail size={20} />
+                <Mail size={18} />
               </a>
             </div>
           </div>
 
-          {/* পProduct Part*/}
+          {/* Product section */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Product</h4>
-            <ul className="space-y-2">
-              {["Features", "Pricing", "Tutorials", "Roadmap"].map((item) => (
+            <h4 className="text-lg font-semibold mb-5 text-gray-900 border-b border-gray-200 pb-2">
+              Products
+            </h4>
+            <ul className="space-y-3">
+              {[
+                "Features",
+                "Pricing",
+                "Tutorials",
+                "Roadmap",
+                "New Releases",
+              ].map((item) => (
                 <li key={item}>
                   <a
                     href="#"
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-gray-600 hover:text-pink-600 transition-colors flex items-center group"
                   >
+                    <span className="h-1 w-1 bg-pink-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     {item}
                   </a>
                 </li>
@@ -148,57 +173,83 @@ const DesktopFooter = () => {
             </ul>
           </div>
 
-          {/* Resources বিভাগ */}
+          {/* Company section */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Resources</h4>
-            <ul className="space-y-2">
-              {["Documentation", "Tutorials", "Blog", "Support"].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
+            <h4 className="text-lg font-semibold mb-5 text-gray-900 border-b border-gray-200 pb-2">
+              Company
+            </h4>
+            <ul className="space-y-3">
+              {["About", "Careers", "Contact", "Partners", "Testimonials"].map(
+                (item) => (
+                  <li key={item}>
+                    <a
+                      href={companyLinks[item] || "#"}
+                      className="text-gray-600 hover:text-pink-600 transition-colors flex items-center group"
+                    >
+                      <span className="h-1 w-1 bg-pink-400 rounded-full mr-3 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                      {item}
+                    </a>
+                  </li>
+                )
+              )}
             </ul>
           </div>
 
-          {/* Company Part */}
-
+          {/* Contact section */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Company</h4>
-            <ul className="space-y-2">
-              {["About", "Careers", "Contact", "Partners"].map((item) => (
-                <li key={item}>
-                  <a
-                    href={companyLinks[item]}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <h4 className="text-lg font-semibold mb-5 text-gray-900 border-b border-gray-200 pb-2">
+              Stay Updated
+            </h4>
+            <p className="text-gray-600 mb-4">
+              Subscribe to our newsletter for the latest updates
+            </p>
+
+            <div className="flex mb-6">
+              <input
+                type="email"
+                placeholder="Your email address"
+                className="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-transparent"
+              />
+              <button className="bg-gradient-to-r from-pink-400 to-pink-600 text-white px-4 rounded-r-lg hover:from-pink-500 hover:to-pink-700 transition-all duration-300 flex items-center">
+                <Send size={16} />
+              </button>
+            </div>
+
+            <div className="space-y-2">
+              <div className="flex items-center text-gray-600">
+                <Phone size={16} className="mr-2 text-pink-500" />
+                <span>+91 8927426099</span>
+              </div>
+              <div className="flex items-center text-gray-600">
+                <Mail size={16} className="mr-2 text-pink-500" />
+                <span>amarpatra932@gmail.com</span>
+              </div>
+              <div className="flex items-start text-gray-600">
+                <MapPin
+                  size={16}
+                  className="mr-2 mt-1 text-pink-500 flex-shrink-0"
+                />
+                <span>32, Chatakal, Dumdum, Kolkata, West Bengal - 700074</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* কপিরাইট এবং অতিরিক্ত লিংক */}
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+        {/* Copyright and additional links */}
+        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="flex items-center mb-4 md:mb-0">
-            <span className="text-gray-400 mr-2">
-              © 2025 Graphy. All rights reserved.
+            <span className="text-gray-500 text-sm mr-2">
+              © 2025 BookNest. All rights reserved.
             </span>
-            <Heart size={14} className="text-red-500" fill="currentColor" />
+            <Heart size={14} className="text-pink-500" fill="currentColor" />
           </div>
           <div className="flex space-x-6">
-            {["Privacy Policy", "Terms of Service", "Cookies Settings"].map(
+            {["Privacy Policy", "Terms of Service", "Cookie Settings"].map(
               (item) => (
                 <a
                   key={item}
                   href="#"
-                  className="text-gray-400 hover:text-white text-sm transition-colors"
+                  className="text-gray-500 hover:text-pink-600 text-sm transition-colors"
                 >
                   {item}
                 </a>

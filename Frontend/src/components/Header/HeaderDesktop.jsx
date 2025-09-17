@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
-import { LogIn, UserPlus, Heart, User, LogOut, Settings } from "lucide-react";
+import {
+  LogIn,
+  UserPlus,
+  Heart,
+  User,
+  LogOut,
+  Settings,
+  BookOpen,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 
 // Menu items array
@@ -39,11 +47,13 @@ const HeaderDesktop = () => {
     <div className="pt-5">
       <div className="w-full mx-auto flex items-center justify-between px-6">
         {/* Logo/Brand Name */}
-        <Link to="/" className="flex items-center">
-          <div className="h-10 w-10 mr-1 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full flex items-center justify-center text-white font-bold">
-            BN
+        <Link to="/" className="flex items-center mb-6">
+          <div className="h-12 w-12 mr-3 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full flex items-center justify-center text-white font-bold shadow-md">
+            <BookOpen size={20} />
           </div>
-          <span className="font-bold text-2xl tracking-tight">BookNest</span>
+          <span className="font-bold text-2xl tracking-tight text-gray-900">
+            BookNest
+          </span>
         </Link>
 
         {/* Menu */}

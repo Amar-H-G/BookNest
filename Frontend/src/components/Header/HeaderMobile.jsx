@@ -1,3 +1,4 @@
+import { BookOpen } from "lucide-react";
 import React, { useState, useRef, useEffect } from "react";
 import { CgProfile, CgLogIn, CgUserAdd } from "react-icons/cg";
 import { FiLogOut, FiSettings, FiUser } from "react-icons/fi";
@@ -71,7 +72,7 @@ const HeaderMobile = ({
       {/* Logo/Brand Name */}
       <Link to="/" className="flex items-center">
         <div className="h-10 w-10 mr-1 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full flex items-center justify-center text-white font-bold">
-          BN
+          <BookOpen />
         </div>
         <span className="font-bold text-2xl tracking-tight">BookNest</span>
       </Link>
