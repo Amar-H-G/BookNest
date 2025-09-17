@@ -30,11 +30,11 @@ const NotFoundPage = () => {
   return (
     <main
       ref={containerRef}
-      className="flex items-center justify-center min-h-screen w-full bg-white px-4 text-gray-800 font-sans"
+      className="flex items-center justify-center  w-full px-4 text-gray-800 font-sans"
     >
       <div
         ref={contentRef}
-        className="w-full max-w-lg text-center p-6 sm:p-8 bg-white rounded-xl shadow-lg border border-gray-200"
+        className="w-full max-w-lg text-center sm:p-8 bg-white rounded-xl shadow-lg border border-gray-200"
       >
         {/* Lucide Icon */}
         <div className="flex justify-center mb-6 animate-item">

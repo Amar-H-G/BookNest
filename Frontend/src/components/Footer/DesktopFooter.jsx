@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Heart, Twitter, Linkedin, Github, Mail, ArrowUp } from "lucide-react";
+import { Link } from "react-router-dom";
 
 // GSAP প্লাগিন রেজিস্টার করুন
 if (typeof window !== "undefined") {
@@ -62,6 +63,13 @@ const DesktopFooter = () => {
     gsap.to(window, { duration: 0.8, scrollTo: 0, ease: "power2.inOut" });
   };
 
+  const companyLinks = {
+    About: "/about",
+    Careers: "/#",
+    Contact: "/contact",
+    Partners: "/#",
+  };
+
   return (
     <footer
       ref={footerRef}
@@ -82,32 +90,40 @@ const DesktopFooter = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* ব্র্যান্ড বিভাগ */}
           <div className="lg:col-span-1">
-            <h3 className="text-2xl font-bold mb-4">Graphy</h3>
+            <Link to="/" className="flex items-center">
+              <div className="h-10 w-10 mr-1 bg-gradient-to-r from-pink-400 to-pink-600 rounded-full flex items-center justify-center text-white font-bold">
+                BN
+              </div>
+              <span className="font-bold text-2xl tracking-tight">
+                BookNest
+              </span>
+            </Link>
             <p className="text-gray-400 mb-6 max-w-xs">
-              Graphy empowers teams to transform raw data into clear, compelling
-              visuals — making insights easier to share, understand, and act on.
+              BookNest - Your gateway to a world of knowledge and imagination.
+              We bring books, authors, and readers together with passion and
+              excellence. Discover, explore, and grow with us every day!
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://x.com/amarpatra89?t=QQAgWJ04jucV95_oK4iG4Q&s=03"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <Twitter size={20} />
               </a>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/amarpatra/"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <Linkedin size={20} />
               </a>
               <a
-                href="#"
+                href="https://github.com/Amar-H-G"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <Github size={20} />
               </a>
               <a
-                href="#"
+                href="mailto:amarpatra932@gmail.com"
                 className="text-gray-400 hover:text-white transition-colors"
               >
                 <Mail size={20} />
@@ -115,26 +131,24 @@ const DesktopFooter = () => {
             </div>
           </div>
 
-          {/* প্রোডাক্ট বিভাগ */}
+          {/* পProduct Part*/}
           <div>
             <h4 className="text-lg font-semibold mb-4">Product</h4>
             <ul className="space-y-2">
-              {["Features", "Pricing", "Integrations", "Changelog"].map(
-                (item) => (
-                  <li key={item}>
-                    <a
-                      href="#"
-                      className="text-gray-400 hover:text-white transition-colors"
-                    >
-                      {item}
-                    </a>
-                  </li>
-                )
-              )}
+              {["Features", "Pricing", "Tutorials", "Roadmap"].map((item) => (
+                <li key={item}>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    {item}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* রিসোর্সেস বিভাগ */}
+          {/* Resources বিভাগ */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Resources</h4>
             <ul className="space-y-2">
@@ -151,14 +165,15 @@ const DesktopFooter = () => {
             </ul>
           </div>
 
-          {/* কোম্পানি বিভাগ */}
+          {/* Company Part */}
+
           <div>
             <h4 className="text-lg font-semibold mb-4">Company</h4>
             <ul className="space-y-2">
               {["About", "Careers", "Contact", "Partners"].map((item) => (
                 <li key={item}>
                   <a
-                    href="#"
+                    href={companyLinks[item]}
                     className="text-gray-400 hover:text-white transition-colors"
                   >
                     {item}

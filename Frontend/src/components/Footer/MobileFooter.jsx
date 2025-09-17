@@ -1,5 +1,6 @@
 import React from "react";
 import { Heart, MessageCircle, Star, BookOpen } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const MobileFooter = () => {
   return (
@@ -23,19 +24,29 @@ const MobileFooter = () => {
             <h4 className="font-semibold text-gray-800 mb-2">Company</h4>
             <ul className="space-y-1 text-sm text-gray-600">
               <li>
-                <a href="#" className="hover:text-blue-600 transition-colors">
+                <Link
+                  to="/explore"
+                  className="hover:text-blue-600 transition-colors"
+                >
                   About
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600 transition-colors">
+                <Link
+                  to="/#"
+                  href="#"
+                  className="hover:text-blue-600 transition-colors"
+                >
                   Careers
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600 transition-colors">
+                <Link
+                  to="/contact"
+                  className="hover:text-blue-600 transition-colors"
+                >
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -43,19 +54,28 @@ const MobileFooter = () => {
             <h4 className="font-semibold text-gray-800 mb-2">Support</h4>
             <ul className="space-y-1 text-sm text-gray-600">
               <li>
-                <a href="#" className="hover:text-blue-600 transition-colors">
+                <Link
+                  to="/contact"
+                  className="hover:text-blue-600 transition-colors"
+                >
                   Help Center
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600 transition-colors">
+                <Link
+                  to="/privacy-policy"
+                  className="hover:text-blue-600 transition-colors"
+                >
                   Privacy
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-blue-600 transition-colors">
+                <Link
+                  to="/terms"
+                  className="hover:text-blue-600 transition-colors"
+                >
                   Terms
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -75,7 +95,7 @@ const MobileFooter = () => {
               ))}
             </div>
           </div>
-          <p className="text-xs text-gray-600">4.8/5 from 2.4k reviews</p>
+          <p className="text-xs text-gray-600">0.0/5 from 0.0k reviews</p>
         </div>
 
         {/* Social and Action Buttons */}
@@ -98,28 +118,28 @@ const MobileFooter = () => {
         {/* Copyright and Legal */}
         <div className="text-center border-t border-gray-200 pt-4">
           <div className="flex items-center justify-center text-xs text-gray-500 mb-1">
-            <span>© 2023 BookNest. All rights reserved.</span>
+            <span>© 2025 BookNest. All rights reserved.</span>
             <Heart size={12} className="text-red-500 fill-red-500 mx-1" />
           </div>
           <div className="flex justify-center space-x-4 text-xs">
-            <a
-              href="#"
+            <Link
+              to="/privacy-policy"
               className="text-gray-500 hover:text-blue-600 transition-colors"
             >
               Privacy
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/terms"
               className="text-gray-500 hover:text-blue-600 transition-colors"
             >
               Terms
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/#"
               className="text-gray-500 hover:text-blue-600 transition-colors"
             >
               Cookies
-            </a>
+            </Link>
           </div>
         </div>
       </div>

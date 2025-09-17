@@ -12,8 +12,8 @@ import HomePage from "../pages/HomePage";
 const publicRoutes = [
   // { path: "/", element: <Home /> },
   { path: "/", element: <HomePage /> },
-  // { path: "/login", element: <Login />, onlyGuest: true },
-  // { path: "/register", element: <Register />, onlyGuest: true },
+  { path: "/login", element: <Login />, onlyGuest: true },
+  { path: "/register", element: <Register />, onlyGuest: true },
 ];
 
 const protectedRoutes = [

@@ -4,6 +4,7 @@ import { useAuth } from "./context/authContext";
 
 import LoadingSpinner from "./components/LoadingSpinner";
 import ResponsiveLayout from "./layout/ResponsiveLayout";
+import { ToastContainer } from "react-toastify";
 
 import {
   publicRoutes,
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[#f7fafc]">
+      <ToastContainer />
       <Routes>
         {/* Public Routes */}
         {publicRoutes.map(({ path, element, onlyGuest }) => (
