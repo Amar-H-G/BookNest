@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/authContext";
 
 import LoadingSpinner from "./components/LoadingSpinner";
+import ResponsiveLayout from "./layout/ResponsiveLayout";
 
 import {
   publicRoutes,
@@ -29,7 +30,7 @@ function App() {
             user && onlyGuest ? (
               <Navigate to={`/${user.role}`} replace />
             ) : (
-              element
+              <ResponsiveLayout>{element}</ResponsiveLayout> // Wrap here
             )
           }
         />
@@ -40,7 +41,13 @@ function App() {
         <Route
           key={path}
           path={path}
-          element={user ? element : <Navigate to="/login" replace />}
+          element={
+            user ? (
+              <ResponsiveLayout>{element}</ResponsiveLayout> // Wrap here
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
         />
       ))}
 
@@ -50,13 +57,20 @@ function App() {
           key={path}
           path={path}
           element={
-            user?.role === role ? element : <Navigate to="/login" replace />
+            user?.role === role ? (
+              <ResponsiveLayout>{element}</ResponsiveLayout> // Wrap here
+            ) : (
+              <Navigate to="/login" replace />
+            )
           }
         />
       ))}
 
       {/* Fallback Route */}
-      <Route path={fallbackRoute.path} element={fallbackRoute.element} />
+      <Route
+        path={fallbackRoute.path}
+        element={<ResponsiveLayout>{fallbackRoute.element}</ResponsiveLayout>}
+      />
     </Routes>
   );
 }
