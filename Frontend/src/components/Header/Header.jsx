@@ -6,7 +6,7 @@ import useWindowSize from "../../hooks/useWindowSize";
 const Header = ({ onMenuClick }) => {
   const { width } = useWindowSize();
 
-  if (width <= 1024) {
+  if (width <= 900) {
     return <HeaderMobile onMenuClick={onMenuClick} />;
   }
 

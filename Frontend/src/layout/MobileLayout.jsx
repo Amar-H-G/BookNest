@@ -1,8 +1,9 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import Header from "../components/Header/Header";
 import Sidebar from "../components/SideBar/Sidebar";
 import Footer from "../components/Footer/Footer";
+import MobileScreenFooter from "../components/Footer/MobileScreenFooter";
 
 export default function MobileLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -30,9 +31,11 @@ export default function MobileLayout({ children }) {
   }, [sidebarOpen]);
 
   return (
-    <div className="mobile-layout relative min-h-screen">
-      {/* Header */}
-      <Header onMenuClick={toggleSidebar} />
+    <div className="mobile-layout relative min-h-screen flex flex-col">
+      {/* Fixed Header */}
+      <div className="fixed top-0 left-0 right-0 z-30">
+        <Header onMenuClick={toggleSidebar} />
+      </div>
 
       {/* Sidebar with GSAP animation */}
       <Sidebar isOpen={sidebarOpen} onClose={closeSidebar} ref={sidebarRef} />
@@ -46,11 +49,20 @@ export default function MobileLayout({ children }) {
         />
       )}
 
-      {/* Main Content */}
-      <main className="p-4 min-h-screen">{children}</main>
+      {/* Main Content with padding to account for fixed header and footer */}
+      <div className="flex-1 pt-16 pb-16 overflow-auto">
+        <main className="p-4 min-h-full">{children}</main>
 
-      {/* Footer */}
-      <Footer />
+        {/* MobileFooter (scrollable part of content) */}
+        <div className="px-4">
+          <Footer />
+        </div>
+      </div>
+
+      {/* Fixed MobileScreenFooter at bottom */}
+      <div className="fixed bottom-0 left-0 right-0 z-30">
+        <MobileScreenFooter />
+      </div>
     </div>
   );
 }

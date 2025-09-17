@@ -20,58 +20,60 @@ function App() {
   }
 
   return (
-    <Routes>
-      {/* Public Routes */}
-      {publicRoutes.map(({ path, element, onlyGuest }) => (
-        <Route
-          key={path}
-          path={path}
-          element={
-            user && onlyGuest ? (
-              <Navigate to={`/${user.role}`} replace />
-            ) : (
-              <ResponsiveLayout>{element}</ResponsiveLayout> // Wrap here
-            )
-          }
-        />
-      ))}
+    <div className="min-h-screen bg-[#f7fafc]">
+      <Routes>
+        {/* Public Routes */}
+        {publicRoutes.map(({ path, element, onlyGuest }) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              user && onlyGuest ? (
+                <Navigate to={`/${user.role}`} replace />
+              ) : (
+                <ResponsiveLayout>{element}</ResponsiveLayout> // Wrap here
+              )
+            }
+          />
+        ))}
 
-      {/* Protected Routes */}
-      {protectedRoutes.map(({ path, element }) => (
-        <Route
-          key={path}
-          path={path}
-          element={
-            user ? (
-              <ResponsiveLayout>{element}</ResponsiveLayout> // Wrap here
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-      ))}
+        {/* Protected Routes */}
+        {protectedRoutes.map(({ path, element }) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              user ? (
+                <ResponsiveLayout>{element}</ResponsiveLayout> // Wrap here
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+        ))}
 
-      {/* Role-Based Routes */}
-      {roleBasedRoutes.map(({ path, element, role }) => (
-        <Route
-          key={path}
-          path={path}
-          element={
-            user?.role === role ? (
-              <ResponsiveLayout>{element}</ResponsiveLayout> // Wrap here
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
-      ))}
+        {/* Role-Based Routes */}
+        {roleBasedRoutes.map(({ path, element, role }) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              user?.role === role ? (
+                <ResponsiveLayout>{element}</ResponsiveLayout> // Wrap here
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+        ))}
 
-      {/* Fallback Route */}
-      <Route
-        path={fallbackRoute.path}
-        element={<ResponsiveLayout>{fallbackRoute.element}</ResponsiveLayout>}
-      />
-    </Routes>
+        {/* Fallback Route */}
+        <Route
+          path={fallbackRoute.path}
+          element={<ResponsiveLayout>{fallbackRoute.element}</ResponsiveLayout>}
+        />
+      </Routes>
+    </div>
   );
 }
 

@@ -6,7 +6,7 @@ import useWindowSize from "../hooks/useWindowSize";
 const ResponsiveLayout = ({ children }) => {
   const { width } = useWindowSize();
 
-  return width <= 1024 ? (
+  return width <= 900 ? (
     <MobileLayout>{children}</MobileLayout>
   ) : (
     <DesktopLayout>{children}</DesktopLayout>

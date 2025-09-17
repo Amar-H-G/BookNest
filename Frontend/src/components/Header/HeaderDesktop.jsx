@@ -25,7 +25,7 @@ const HeaderDesktop = () => {
   // }, []);
 
   return (
-    <header className="bg-white py-5">
+    <div className=" py-5">
       <div
         ref={headerRef}
         className="max-w-6xl mx-auto flex items-center justify-between px-6"
@@ -34,28 +34,25 @@ const HeaderDesktop = () => {
         <span className="font-bold text-2xl tracking-tight">BookNest</span>
 
         {/* Menu */}
-        <nav aria-label="Primary">
+        <div className="flex gap-8 items-center">
           <div className="flex bg-white rounded-full px-6 py-2 shadow gap-8">
             {menu.map((item) => (
               <a
                 key={item.name}
                 href={item.link}
                 className="text-gray-700 font-medium hover:text-pink-500 transition"
-                aria-label={item.name}
-                rel="noopener noreferrer"
               >
                 {item.name}
               </a>
             ))}
           </div>
-        </nav>
+        </div>
 
         {/* Auth buttons */}
         <div className="flex items-center gap-3">
           <a
             href="#login"
             className="font-medium flex items-center gap-1 hover:text-pink-500 transition"
-            aria-label="Log in"
           >
             <LogIn size={20} />
             Log in
@@ -63,15 +60,13 @@ const HeaderDesktop = () => {
           <a
             href="#signup"
             className="ml-2 px-5 py-2 rounded-md bg-gradient-to-r from-pink-400 to-pink-600 text-white font-semibold shadow-lg flex items-center gap-1 transition hover:scale-105"
-            aria-label="Sign up"
-            rel="noopener noreferrer"
           >
             <UserPlus size={20} />
             Sign Up
           </a>
         </div>
       </div>
-    </header>
+    </div>
   );
 };
 
