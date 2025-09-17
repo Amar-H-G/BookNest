@@ -2,16 +2,16 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./context/authContext";
 
-// Pages
-import Home from "./pages/Home";
-import Login from "./pages/login";
-import Register from "./pages/register";
-import Profile from "./pages/profile";
-import OwnerDashboard from "./pages/owner";
-import SeekerDashboard from "./pages/seeker";
-import EditProfilePage from "./pages/editProfileForm";
 import LoadingSpinner from "./components/LoadingSpinner";
-import Error404Page from "./components/Error404Page";
+import ResponsiveLayout from "./layout/ResponsiveLayout";
+import { ToastContainer } from "react-toastify";
+
+import {
+  publicRoutes,
+  protectedRoutes,
+  roleBasedRoutes,
+  fallbackRoute,
+} from "./routes/routesConfig";
 
 function App() {
   const { user, isLoading } = useAuth();
@@ -21,57 +21,61 @@ function App() {
   }
 
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route path="/" element={<Home />} />
-      <Route
-        path="/login"
-        element={user ? <Navigate to={`/${user.role}`} replace /> : <Login />}
-      />
-      <Route
-        path="/register"
-        element={
-          user ? <Navigate to={`/${user.role}`} replace /> : <Register />
-        }
-      />
+    <div className="min-h-screen bg-[#f7fafc]">
+      <ToastContainer />
+      <Routes>
+        {/* Public Routes */}
+        {publicRoutes.map(({ path, element, onlyGuest }) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              user && onlyGuest ? (
+                <Navigate to={`/${user.role}`} replace />
+              ) : (
+                <ResponsiveLayout>{element}</ResponsiveLayout> // Wrap here
+              )
+            }
+          />
+        ))}
 
-      {/* Protected Routes */}
-      <Route
-        path="/profile"
-        element={user ? <Profile /> : <Navigate to="/login" replace />}
-      />
-      <Route
-        path="/edit-profile/:id"
-        element={user ? <EditProfilePage /> : <Navigate to="/login" replace />}
-      />
+        {/* Protected Routes */}
+        {protectedRoutes.map(({ path, element }) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              user ? (
+                <ResponsiveLayout>{element}</ResponsiveLayout> // Wrap here
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+        ))}
 
-      {/* Owner Dashboard */}
-      <Route
-        path="/owner"
-        element={
-          user?.role === "owner" ? (
-            <OwnerDashboard />
-          ) : (
-            <Navigate to="/login" replace />
-          )
-        }
-      />
+        {/* Role-Based Routes */}
+        {roleBasedRoutes.map(({ path, element, role }) => (
+          <Route
+            key={path}
+            path={path}
+            element={
+              user?.role === role ? (
+                <ResponsiveLayout>{element}</ResponsiveLayout> // Wrap here
+              ) : (
+                <Navigate to="/login" replace />
+              )
+            }
+          />
+        ))}
 
-      {/* Seeker Dashboard */}
-      <Route
-        path="/seeker"
-        element={
-          user?.role === "seeker" ? (
-            <SeekerDashboard />
-          ) : (
-            <Navigate to="/login" replace />
-          )
-        }
-      />
-
-      {/* Fallback Route */}
-      <Route path="*" element={<Error404Page />} />
-    </Routes>
+        {/* Fallback Route */}
+        <Route
+          path={fallbackRoute.path}
+          element={<ResponsiveLayout>{fallbackRoute.element}</ResponsiveLayout>}
+        />
+      </Routes>
+    </div>
   );
 }
 
