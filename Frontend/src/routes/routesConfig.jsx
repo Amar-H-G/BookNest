@@ -8,10 +8,12 @@ import EditProfilePage from "../pages/editProfileForm";
 import Error404Page from "../components/Error404Page";
 import AdminDashboard from "../pages/AdminDashboard";
 import HomePage from "../pages/HomePage";
+import DynamicEmail from "../pages/Administrator/DynamicEmail";
 
 const publicRoutes = [
   // { path: "/", element: <Home /> },
   { path: "/", element: <HomePage /> },
+  { path: "/admin/dynamic-email", element: <DynamicEmail /> },
   { path: "/login", element: <Login />, onlyGuest: true },
   { path: "/register", element: <Register />, onlyGuest: true },
 ];
